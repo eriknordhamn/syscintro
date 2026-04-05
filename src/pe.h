@@ -4,6 +4,7 @@
 #include <systemc.h>
 #include <cstdlib>
 #include "packet.h"
+#include "txlog.h"
 
 // Processing Element: generates and consumes packets
 SC_MODULE(PE) {
@@ -71,8 +72,7 @@ SC_MODULE(PE) {
             out_valid.write(true);
             packets_sent++;
 
-            std::cout << sc_time_stamp() << " PE(" << pos_x << ","
-                      << pos_y << ") SENT " << pkt << std::endl;
+            TxLog::instance().log_send(pos_x, pos_y, pkt);
         }
     }
 
@@ -88,8 +88,7 @@ SC_MODULE(PE) {
             Packet pkt = in_data.read();
             packets_received++;
 
-            std::cout << sc_time_stamp() << " PE(" << pos_x << ","
-                      << pos_y << ") RECV " << pkt << std::endl;
+            TxLog::instance().log_recv(pos_x, pos_y, pkt);
         }
     }
 };

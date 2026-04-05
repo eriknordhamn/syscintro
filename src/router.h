@@ -4,6 +4,7 @@
 #include <systemc.h>
 #include <queue>
 #include "packet.h"
+#include "txlog.h"
 
 // Buffer depth for each input port
 static const int BUFFER_DEPTH = 4;
@@ -66,9 +67,16 @@ SC_MODULE(Router) {
 
         // Read incoming flits into buffers
         for (int i = 0; i < NUM_DIRS; i++) {
-            if (in_valid[i].read() &&
-                (int)input_buffer[i].size() < BUFFER_DEPTH) {
-                input_buffer[i].push(in_data[i].read());
+            if (in_valid[i].read()) {
+                Packet pkt = in_data[i].read();
+                if ((int)input_buffer[i].size() < BUFFER_DEPTH) {
+                    input_buffer[i].push(pkt);
+                    TxLog::instance().log_buffer(pos_x, pos_y, pkt,
+                                                 (Direction)i);
+                } else {
+                    TxLog::instance().log_drop(pos_x, pos_y, pkt,
+                                               (Direction)i);
+                }
             }
             in_ready[i].write((int)input_buffer[i].size() < BUFFER_DEPTH);
         }
@@ -94,6 +102,8 @@ SC_MODULE(Router) {
                 out_valid[out_dir].write(true);
                 out_used[out_dir] = true;
                 input_buffer[i].pop();
+                TxLog::instance().log_forward(pos_x, pos_y, pkt,
+                                              (Direction)i, out_dir);
             }
         }
     }

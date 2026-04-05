@@ -1,11 +1,14 @@
 #include <systemc.h>
 #include "mesh.h"
+#include "txlog.h"
 
 static const int MESH_SIZE = 4;         // 4x4 mesh
 static const int SIM_CYCLES = 200;      // simulation duration in clock cycles
 
 int sc_main(int argc, char* argv[]) {
     srand(42);
+
+    TxLog::instance().open("transactions.csv");
 
     sc_clock clk("clk", 10, SC_NS);
     sc_signal<bool> rst;
@@ -35,6 +38,7 @@ int sc_main(int argc, char* argv[]) {
 
     mesh.print_stats();
 
+    TxLog::instance().close();
     sc_close_vcd_trace_file(tf);
 
     std::cout << "\nSimulation complete at " << sc_time_stamp() << std::endl;
