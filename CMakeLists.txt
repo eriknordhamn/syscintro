@@ -2,12 +2,14 @@ cmake_minimum_required(VERSION 3.16)
 
 project(mesh_network)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Find SystemC - checks SYSTEMC_HOME env variable first, then common paths
 if(DEFINED ENV{SYSTEMC_HOME})
     set(SYSTEMC_HOME $ENV{SYSTEMC_HOME})
+elseif(EXISTS /opt/systemc-3.0.2)
+    set(SYSTEMC_HOME /opt/systemc-3.0.2)
 elseif(EXISTS /opt/systemc)
     set(SYSTEMC_HOME /opt/systemc)
 elseif(EXISTS /usr/local/systemc)

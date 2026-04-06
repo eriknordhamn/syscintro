@@ -5,7 +5,9 @@ SC_MODULE(counter) {
     sc_out<int>  count;
     int n = 0;
 
-    void tick() { n++; count.write(n); }
+    void tick() { n++; 
+        cout<< "Tick\n";
+        count.write(n); }
 
     SC_CTOR(counter) {
         SC_METHOD(tick);
