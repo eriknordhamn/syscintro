@@ -50,3 +50,12 @@ target_include_directories(counter PRIVATE
 )
 
 target_link_libraries(counter ${SYSTEMC_LIBRARY})
+
+# TLM memory example (CPU + 256-byte memory over TLM-2.0)
+add_executable(tlm_memory src/tlm_memory.cpp)
+
+target_include_directories(tlm_memory PRIVATE
+    ${SYSTEMC_INCLUDE_DIR}
+)
+
+target_link_libraries(tlm_memory ${SYSTEMC_LIBRARY})
