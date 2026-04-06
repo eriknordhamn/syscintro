@@ -32,6 +32,7 @@ else()
     )
 endif()
 
+# Mesh network simulation
 add_executable(mesh_sim src/main.cpp)
 
 target_include_directories(mesh_sim PRIVATE
@@ -40,3 +41,12 @@ target_include_directories(mesh_sim PRIVATE
 )
 
 target_link_libraries(mesh_sim ${SYSTEMC_LIBRARY})
+
+# Basic counter example
+add_executable(counter src/counter.cpp)
+
+target_include_directories(counter PRIVATE
+    ${SYSTEMC_INCLUDE_DIR}
+)
+
+target_link_libraries(counter ${SYSTEMC_LIBRARY})
