@@ -1,5 +1,7 @@
 #systemC introduction
 
+git clone git@github.com:eriknordhamn/syscintro.git
+
 ##Installs
 
 ###systemC
@@ -26,4 +28,5 @@ cd build
 cmake ..
 make check
 sudo make install
+
 
