@@ -75,3 +75,8 @@ add_demo(demo2_threads  src/demo2_threads.cpp)   # SC_THREAD, wait(), sc_event
 add_demo(demo3_fifos    src/demo3_fifos.cpp)     # sc_fifo, producer/consumer
 add_demo(demo4_hierarchy src/demo4_hierarchy.cpp) # Hierarchical modules, sc_port, sc_export
 add_demo(demo5_cthread  src/demo5_cthread.cpp)   # SC_CTHREAD, reset, VCD tracing
+add_demo(demo6_datatypes src/demo6_datatypes.cpp) # sc_uint, sc_int, sc_bv, sc_lv
+add_demo(demo7_mutex     src/demo7_mutex.cpp)     # sc_mutex, sc_semaphore
+add_demo(demo8_multiclk  src/demo8_multiclk.cpp)  # Multiple clock domains, CDC
+add_demo(demo9_spawn     src/demo9_spawn.cpp)     # sc_spawn, dynamic processes
+add_demo(demo10_reporting src/demo10_reporting.cpp) # SC_REPORT, sc_time, phases
