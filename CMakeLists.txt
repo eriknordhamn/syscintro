@@ -61,3 +61,17 @@ target_include_directories(tlm_memory PRIVATE
 )
 
 target_link_libraries(tlm_memory ${SYSTEMC_LIBRARY})
+
+# --- Learning demos ---
+# Helper to add a demo executable
+function(add_demo name source)
+    add_executable(${name} ${source})
+    target_include_directories(${name} PRIVATE ${SYSTEMC_INCLUDE_DIR})
+    target_link_libraries(${name} ${SYSTEMC_LIBRARY})
+endfunction()
+
+add_demo(demo1_methods  src/demo1_methods.cpp)   # SC_METHOD, sc_signal, sensitivity
+add_demo(demo2_threads  src/demo2_threads.cpp)   # SC_THREAD, wait(), sc_event
+add_demo(demo3_fifos    src/demo3_fifos.cpp)     # sc_fifo, producer/consumer
+add_demo(demo4_hierarchy src/demo4_hierarchy.cpp) # Hierarchical modules, sc_port, sc_export
+add_demo(demo5_cthread  src/demo5_cthread.cpp)   # SC_CTHREAD, reset, VCD tracing
