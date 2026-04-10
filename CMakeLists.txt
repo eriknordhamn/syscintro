@@ -88,3 +88,4 @@ add_demo(demo13_tlm_dmi   src/demo13_tlm_dmi.cpp)         # Direct Memory Interf
 add_demo(demo14_tlm_interconnect src/demo14_tlm_interconnect.cpp) # Bus, address decoding
 add_demo(demo15_tlm_extensions   src/demo15_tlm_extensions.cpp)   # Extensions, temporal decoupling
 add_demo(demo16_tlm_channels    src/demo16_tlm_channels.cpp)     # tlm_fifo, analysis_port, req_rsp
+add_demo(demo17_credit_flow     src/demo17_credit_flow.cpp)      # Credit-based flow control (nb_transport 4-phase)
