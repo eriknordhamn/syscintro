@@ -27,7 +27,6 @@ class SimpleBus : public sc_channel, public bus_if {
     int memory[64];
 
 public:
-    SC_HAS_PROCESS(SimpleBus);
     SimpleBus(sc_module_name name) : sc_channel(name) {
         memset(memory, 0, sizeof(memory));
     }
@@ -75,7 +74,9 @@ SC_MODULE(Cpu) {
                   << a << ", " << b << ", " << c << std::endl;
     }
 
-    SC_CTOR(Cpu) { SC_THREAD(run); }
+    SC_CTOR(Cpu) { 
+        SC_THREAD(run); 
+    }
 };
 
 // ---- DMA module: also uses the bus ----
@@ -94,7 +95,9 @@ SC_MODULE(Dma) {
         std::cout << sc_time_stamp() << " DMA: copy complete" << std::endl;
     }
 
-    SC_CTOR(Dma) { SC_THREAD(run); }
+    SC_CTOR(Dma) { 
+        SC_THREAD(run); 
+    }
 };
 
 // ---- Top-level SoC: hierarchical module ----

@@ -29,7 +29,9 @@ SC_MODULE(Source) {
         std::cout << sc_time_stamp() << " Source: done" << std::endl;
     }
 
-    SC_CTOR(Source) { SC_THREAD(run); }
+    SC_CTOR(Source) { 
+        SC_THREAD(run); 
+    }
 };
 
 SC_MODULE(Sink) {
