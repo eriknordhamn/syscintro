@@ -89,3 +89,12 @@ add_demo(demo14_tlm_interconnect src/demo14_tlm_interconnect.cpp) # Bus, address
 add_demo(demo15_tlm_extensions   src/demo15_tlm_extensions.cpp)   # Extensions, temporal decoupling
 add_demo(demo16_tlm_channels    src/demo16_tlm_channels.cpp)     # tlm_fifo, analysis_port, req_rsp
 add_demo(demo17_credit_flow     src/demo17_credit_flow.cpp)      # Credit-based flow control (nb_transport 4-phase)
+
+# --- Pure C++ language demos (no SystemC) ---
+function(add_cpp_demo name source)
+    add_executable(${name} ${source})
+endfunction()
+
+add_cpp_demo(cppdemo1_classes     src/cppdemo1_classes.cpp)     # class basics, ctors, const, static
+add_cpp_demo(cppdemo2_inheritance src/cppdemo2_inheritance.cpp) # virtual, polymorphism, abstract base
+add_cpp_demo(cppdemo3_templates   src/cppdemo3_templates.cpp)   # function/class templates, variadic
