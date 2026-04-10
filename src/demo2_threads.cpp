@@ -33,9 +33,6 @@ SC_MODULE(Producer) {
         }
     }
 
-    SC_HAS_PROCESS(Producer);
-    // SC_HAS_PROCESS is needed when constructor takes extra args
-    // (SC_CTOR only works with the default (name) constructor)
     Producer(sc_module_name name, sc_event& evt)
         : sc_module(name), data_ready(evt), value(0) {
         SC_THREAD(run);
@@ -54,7 +51,6 @@ SC_MODULE(Consumer) {
         }
     }
 
-    SC_HAS_PROCESS(Consumer);
     Consumer(sc_module_name name, sc_event& evt, int& val)
         : sc_module(name), data_ready(evt), shared_value(val) {
         SC_THREAD(run);
@@ -101,11 +97,11 @@ int sc_main(int argc, char* argv[]) {
     sc_event data_evt;
     Producer prod("prod", data_evt);
     Consumer cons("cons", data_evt, prod.value);
+    TimedNotifier tn("tn");
 
     sc_start(100, SC_NS);
 
     std::cout << "\n--- Part B: Timed notifications ---" << std::endl;
-    TimedNotifier tn("tn");
     sc_start(50, SC_NS);
 
     return 0;
