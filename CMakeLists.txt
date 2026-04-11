@@ -62,6 +62,11 @@ target_include_directories(tlm_memory PRIVATE
 
 target_link_libraries(tlm_memory ${SYSTEMC_LIBRARY})
 
+# --- C++ primers (no SystemC) ---
+add_executable(cpp1_classes     src/cpp1_classes.cpp)
+add_executable(cpp2_inheritance src/cpp2_inheritance.cpp)
+add_executable(cpp3_templates   src/cpp3_templates.cpp)
+
 # --- Learning demos ---
 # Helper to add a demo executable
 function(add_demo name source)
