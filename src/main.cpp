@@ -4,6 +4,10 @@
 
 static const int MESH_SIZE = 4;
 static const int SIM_TIME_NS = 2000;
+static const int ROUTER_LATENCY_CYCLES = 1;
+static const int CLOCK_PERIOD_NS       = 1;
+static const int PIPE_STAGES           = 2;  // pipeline stages per inter-router link
+static const int PIPE_EXTRA_BUFFER     = 1;  // extra FIFO slots per stage (beyond 1)
 
 int sc_main(int argc, char* argv[]) {
     srand(42);
@@ -11,7 +15,8 @@ int sc_main(int argc, char* argv[]) {
     TxLog::instance().open("transactions.csv");
 
     Mesh mesh("mesh");
-    mesh.build(MESH_SIZE);
+    mesh.build(MESH_SIZE, ROUTER_LATENCY_CYCLES, sc_time(CLOCK_PERIOD_NS, SC_NS),
+               PIPE_STAGES, PIPE_EXTRA_BUFFER);
 
     std::cout << "=== " << MESH_SIZE << "x" << MESH_SIZE
               << " Mesh Network Simulation ===" << std::endl;

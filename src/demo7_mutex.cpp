@@ -42,7 +42,6 @@ SC_MODULE(BusMaster) {
         }
     }
 
-    SC_HAS_PROCESS(BusMaster);
     BusMaster(sc_module_name name, int cpu_id, sc_mutex& m)
         : sc_module(name), id(cpu_id), bus(m) {
         SC_THREAD(run);
@@ -69,7 +68,6 @@ SC_MODULE(PollingMaster) {
         }
     }
 
-    SC_HAS_PROCESS(PollingMaster);
     PollingMaster(sc_module_name name, sc_mutex& m)
         : sc_module(name), bus(m) {
         SC_THREAD(run);
@@ -104,7 +102,6 @@ SC_MODULE(DmaEngine) {
         }
     }
 
-    SC_HAS_PROCESS(DmaEngine);
     DmaEngine(sc_module_name name, int dma_id, sc_semaphore& sem)
         : sc_module(name), id(dma_id), channels(sem) {
         SC_THREAD(run);

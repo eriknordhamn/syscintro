@@ -11,18 +11,20 @@ SC_MODULE(Router) {
     int pos_x;
     int pos_y;
     int mesh_size;
+    sc_time routing_latency;
 
     sc_fifo_in<Packet>  in[NUM_DIRS];
     sc_fifo_out<Packet> out[NUM_DIRS];
 
-    SC_CTOR(Router) : pos_x(0), pos_y(0), mesh_size(0) {
+    SC_CTOR(Router) : pos_x(0), pos_y(0), mesh_size(0), routing_latency(SC_ZERO_TIME) {
         SC_THREAD(route);
     }
 
-    void init(int x, int y, int size) {
+    void init(int x, int y, int size, sc_time latency = SC_ZERO_TIME) {
         pos_x = x;
         pos_y = y;
         mesh_size = size;
+        routing_latency = latency;
     }
 
     Direction compute_route(const Packet& pkt) {
@@ -39,6 +41,8 @@ SC_MODULE(Router) {
             for (int i = 0; i < NUM_DIRS; i++) {
                 if (in[i].num_available() > 0) {
                     Packet pkt = in[i].read();
+                    if (routing_latency != SC_ZERO_TIME)
+                        wait(routing_latency);
                     Direction d = compute_route(pkt);
                     TxLog::instance().log_forward(pos_x, pos_y, pkt, (Direction)i, d);
                     out[d].write(pkt);

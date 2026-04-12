@@ -92,7 +92,6 @@ SC_MODULE(Watchdog) {
         }
     }
 
-    SC_HAS_PROCESS(Watchdog);
     Watchdog(sc_module_name name, int tmo)
         : sc_module(name), cycles_since_beat(0), timeout(tmo) {
         SC_METHOD(monitor);

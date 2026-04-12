@@ -50,7 +50,6 @@ SC_MODULE(CreditTarget) {
     // Payload storage (owned by target so we can process them later)
     unsigned char storage[256];
 
-    SC_HAS_PROCESS(CreditTarget);
     CreditTarget(sc_module_name name, int depth)
         : sc_module(name), socket("socket"), buffer_depth(depth),
           peq(this, &CreditTarget::peq_callback)
@@ -175,7 +174,6 @@ SC_MODULE(CreditInitiator) {
     int outstanding;
     int completed;
 
-    SC_HAS_PROCESS(CreditInitiator);
     CreditInitiator(sc_module_name name, int initial_credits)
         : sc_module(name), socket("socket"),
           credits(initial_credits), outstanding(0), completed(0)

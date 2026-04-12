@@ -168,7 +168,6 @@ SC_MODULE(Monitor) {
         }
     } writer;
 
-    SC_HAS_PROCESS(Monitor);
     Monitor(sc_module_name name, const char* lbl)
         : sc_module(name), label(lbl), count(0), writer(this) {}
 };
@@ -195,7 +194,6 @@ SC_MODULE(Scoreboard) {
         }
     } writer;
 
-    SC_HAS_PROCESS(Scoreboard);
     Scoreboard(sc_module_name name)
         : sc_module(name), expected_id(100), writer(this) {}
 };

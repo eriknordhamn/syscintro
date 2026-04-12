@@ -27,7 +27,6 @@ SC_MODULE(MemTarget) {
     std::string    label;
     bool           readonly;
 
-    SC_HAS_PROCESS(MemTarget);
     MemTarget(sc_module_name name, unsigned int sz,
               bool ro = false, unsigned char fill = 0)
         : sc_module(name), socket("socket"), size(sz), readonly(ro) {
@@ -131,7 +130,6 @@ SC_MODULE(Bus) {
     int n_targets;
     AddrRange map[4];
 
-    SC_HAS_PROCESS(Bus);
     Bus(sc_module_name name) : sc_module(name), n_targets(0) {
         for (int i = 0; i < 4; i++) {
             char nm[32];
@@ -267,7 +265,6 @@ SC_MODULE(Cpu) {
         }
     }
 
-    SC_HAS_PROCESS(Cpu);
     Cpu(sc_module_name name, int cpu_id)
         : sc_module(name), socket("socket"), id(cpu_id) {
         SC_THREAD(run);
