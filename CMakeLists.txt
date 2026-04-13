@@ -67,6 +67,7 @@ add_executable(cpp1_classes     src/cpp1_classes.cpp)
 add_executable(cpp1_5_classes   src/cpp1_5_classes.cpp)
 add_executable(cpp2_inheritance src/cpp2_inheritance.cpp)
 add_executable(cpp3_templates   src/cpp3_templates.cpp)
+add_executable(my_classes       src/my_classes.cpp)
 
 # --- Learning demos ---
 # Helper to add a demo executable
