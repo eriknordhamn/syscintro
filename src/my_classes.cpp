@@ -12,6 +12,14 @@ class Aclass {
         };
 };
 
+class Bclass : public Aclass {
+    public:
+        std::string name;
+        Bclass(std::string the_name) : name(the_name) {
+            std::cout << "Bclass constructor run\n";
+        };
+    };
+
 void func(int &x) {
     x = 42;
 };
