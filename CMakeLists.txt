@@ -89,8 +89,12 @@ add_demo(demo9_spawn     src/demo9_spawn.cpp)     # sc_spawn, dynamic processes
 add_demo(demo10_reporting src/demo10_reporting.cpp) # SC_REPORT, sc_time, phases
 
 # TLM-2.0 demos
-add_demo(demo11_tlm_lt    src/demo11_tlm_lt.cpp)          # Blocking transport (LT)
-add_demo(demo12_tlm_at    src/demo12_tlm_at.cpp)          # Non-blocking transport (AT)
+add_demo(demo11_tlm_lt    src/demo11_tlm_lt.cpp)
+add_demo(demo_lt_hop      src/demo_lt_hop.cpp)
+add_demo(demo_at_hop      src/demo_at_hop.cpp)
+add_demo(demo_fifo_hop    src/demo_fifo_hop.cpp)          # Blocking transport (LT)
+add_demo(demo12_tlm_at         src/demo12_tlm_at.cpp)
+add_demo(demo12b_tlm_at_simple src/demo12b_tlm_at_simple.cpp)          # Non-blocking transport (AT)
 add_demo(demo13_tlm_dmi   src/demo13_tlm_dmi.cpp)         # Direct Memory Interface
 add_demo(demo14_tlm_interconnect src/demo14_tlm_interconnect.cpp) # Bus, address decoding
 add_demo(demo15_tlm_extensions   src/demo15_tlm_extensions.cpp)   # Extensions, temporal decoupling

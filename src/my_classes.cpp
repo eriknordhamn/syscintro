@@ -4,6 +4,7 @@ class Aclass {
     public:
         std::string name;
         Aclass(std::string the_name) : name(the_name) {
+            // constructor code here
             std::cout << "Aclass constructor run\n";
         };
         int change_name(std::string new_name) {
@@ -14,14 +15,15 @@ class Aclass {
 
 class Bclass : public Aclass {
     public:
-        std::string name;
-        Bclass(std::string the_name) : name(the_name) {
+        //std::string name;
+        Bclass(std::string the_name) : Aclass(the_name) {
             std::cout << "Bclass constructor run\n";
         };
     };
 
-void func(int &x) {
-    x = 42;
+// Make a function that takes an int by reference and modifies it
+void func(int& x) {
+    x = x + 1;  // increment the value of x by 1
 };
 
 int main() {
