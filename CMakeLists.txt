@@ -77,6 +77,7 @@ function(add_demo name source)
     target_link_libraries(${name} ${SYSTEMC_LIBRARY})
 endfunction()
 
+add_demo(path           src/path.cpp)
 add_demo(demo1_methods  src/demo1_methods.cpp)   # SC_METHOD, sc_signal, sensitivity
 add_demo(demo2_threads  src/demo2_threads.cpp)   # SC_THREAD, wait(), sc_event
 add_demo(demo3_fifos    src/demo3_fifos.cpp)     # sc_fifo, producer/consumer

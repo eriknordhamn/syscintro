@@ -33,6 +33,7 @@ SC_MODULE(Memory) {
     }
 
     // b_transport: called by the initiator, executes the transaction
+    // b_transport is a blocking call: the initiator waits until this function returns, and the transaction is complete. The parameters are set by the std TLM2.
     void b_transport(tlm_generic_payload& trans, sc_time& delay) {
         // Extract fields from the generic payload
         tlm_command    cmd  = trans.get_command();
